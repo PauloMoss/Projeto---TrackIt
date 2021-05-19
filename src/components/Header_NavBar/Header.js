@@ -36,6 +36,7 @@ color: #FFFFFF;
         width: 51px;
         height: 51px;
         border-radius: 98.5px;
+        object-fit: cover;
         background-color: #fff;
     }
 `

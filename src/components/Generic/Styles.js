@@ -1,5 +1,12 @@
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
+const GlobalStyle = createGlobalStyle`
+    body {
+        background-color: ${props => props.color};
+        font-family: 'Lexend Deca', sans-serif;
+    }
+`;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -28,6 +35,7 @@ const Input = styled.input`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     margin: 6px 0;
+    background-color: ${props => props.color};
 `;
 
 const Button = styled.button`
@@ -37,5 +45,9 @@ const Button = styled.button`
     border-radius: 5px;
     color: #FFFFFF;
 `;
+const UserAlert = styled.div`
+    margin-top: 10px;
+    color: #ff0000;
+`;
 
-export {Container, Input, Button};
+export {Container, Input, Button, UserAlert, GlobalStyle};

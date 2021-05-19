@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Header from '../Header_NavBar/Header';
 import NavBar from '../Header_NavBar/NavBar';
 
+
 export default function Today() {
     
     return(

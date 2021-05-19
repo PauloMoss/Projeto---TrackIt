@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
 import UserContext from '../contexts/UserContext';
 
+import {GlobalStyle} from './Generic/Styles';
 import Login from './Login/Login';
 import SignUp from './SingIn/SignUp';
 import Habtis from "./Habits/Habits";
@@ -14,6 +15,7 @@ export default function App() {
 
     return(
         <UserContext.Provider value={{userProfile, setUserProfile}}>
+            <GlobalStyle color={'#E5E5E5'}/>
             <Router>
                 <Switch>
                     <Route exact path= "/">
