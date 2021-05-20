@@ -28,8 +28,8 @@ export default function Login() {
         
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`, user);
         request.then((r) => {
-            history.push("/hoje");
             setUserProfile(r.data)
+            history.push("/hoje");
         })
         request.catch(erro => {
             setButtonStatus({ status:"Entrar", userAlert: <UserAlert>Usuario ou senha invalida</UserAlert>, isDisabled: false});

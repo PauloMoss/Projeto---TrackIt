@@ -4,7 +4,7 @@ import axios from 'axios';
 import UserContext from '../../contexts/UserContext';
 import HabitContext from '../../contexts/HabitContext';
 import Header from '../Header_Menu/Header';
-import NavBar from '../Header_Menu/Menu';
+import Menu from '../Header_Menu/Menu';
 import Habit from './Habit';
 import AddHabit from './AddHabit';
 import { NoHabitsYet } from './Styles'
@@ -36,7 +36,7 @@ export default function Habtis() {
             
             {habitsList !== null ? ((habitsList.length !== 0) ? habitsList.map((h) => <Habit key={h.id} habit={h} />) : noHabitsYet) : "carregando"}
 
-            <NavBar />
+            <Menu />
         </HabitContext.Provider>
     );
 }

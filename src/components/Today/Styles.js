@@ -42,11 +42,21 @@ align-items: center;
 
 width: 69px;
 height: 69px;
-background: #8FC549;
+background: ${props => props.color};
 border-radius: 5px;
     ion-icon {
         font-size:35px;
         color: #FFFFFF;
     }
 `;
-export { DateToday, Container, MyHabitsTitle, Weekdays, FinishedHabits };
+const DaysChecked = styled.div`
+
+    & > span {
+        color: ${props => props.color};
+    }
+`;
+
+const HabitDayStatus = styled.span`
+color: ${props => props.color}
+`;
+export { DateToday, Container, MyHabitsTitle, Weekdays, FinishedHabits, HabitDayStatus, DaysChecked };
