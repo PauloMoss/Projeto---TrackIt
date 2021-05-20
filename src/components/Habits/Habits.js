@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import HabitContext from '../../contexts/HabitContext';
 import axios from 'axios';
 
 import styled from 'styled-components';
@@ -11,7 +12,7 @@ import AddHabit from './AddHabit';
 export default function Habtis() {
     
     const { userProfile } = useContext(UserContext);
-    const [habitsList, setHabitsList] = useState([1,2]);
+    const [habitsList, setHabitsList] = useState([]);
     const [createHabit, setCreateHabit] = useState(false);
 
     useEffect(() => {
@@ -27,16 +28,16 @@ export default function Habtis() {
     );
 
     const noHabitsYet = <NoHabitsYet> Voce não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</NoHabitsYet>
-    console.log(habitsList)
+    
     return(
-        <>
+        <HabitContext.Provider value={{habitsList, setHabitsList}}>
             <Header />
             <AddHabit createHabit={createHabit} setCreateHabit={setCreateHabit}/>
             
-            {habitsList === [] ? noHabitsYet : habitsList.map((h,i) => <Habit key={i} habit={h} />)}
+            {habitsList.length !== 0 ? habitsList.map((h) => <Habit key={h.id} habit={h} />) : noHabitsYet}
 
             <NavBar />
-        </>
+        </HabitContext.Provider>
     );
 }
 

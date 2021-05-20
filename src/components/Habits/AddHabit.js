@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import HabitContext from '../../contexts/HabitContext';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
 
@@ -9,6 +10,7 @@ import {Input} from '../Generic/Styles';
 export default function AddHabit({createHabit, setCreateHabit}) {
 
     const { userProfile } = useContext(UserContext);
+    const { setHabitsList } = useContext(HabitContext);
     const [myHabit, setMyHabit] = useState({name: "", days: []})
     const [buttonStatus, setButtonStatus] = useState({ status:"Salvar", isDisabled: false});
     const { name, days } = myHabit
@@ -31,13 +33,19 @@ export default function AddHabit({createHabit, setCreateHabit}) {
                 Authorization: `Bearer ${userProfile.token}`
             }
         }
-        const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', myHabit, config);
-        request.then(r => {
-            setCreateHabit(false);
-            setButtonStatus({status:"Salvar", isDisabled: false});
+        const creatNewHabit = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', myHabit, config);
+        creatNewHabit.then(r => {
+            const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+            request.then(r => {
+                setCreateHabit(false);
+                setMyHabit({name: "", days: []});
+                setButtonStatus({status:"Salvar", isDisabled: false});
+                setHabitsList(r.data);
+            });
+            request.catch(()=> alert("Ocorreu um erro ao carregar a lista de habitos."))
         });
-        request.catch(()=> {
-            alert("Ocorreu um erro.")
+        creatNewHabit.catch(()=> {
+            alert("Ocorreu um erro ao criar o habito.")
             setButtonStatus({status:"Salvar", isDisabled: false});
         })
     }
@@ -72,7 +80,7 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 width: 90%;
-background: #333;
+background: #FFF;
 border-radius: 5px;
 margin: 10px auto;
 
