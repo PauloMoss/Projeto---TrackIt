@@ -4,7 +4,7 @@ import { Container, Weekdays, Days, Settings } from './Styles'
 
 export default function NewHabitConfig(props) {
 
-    const { setMyHabit, sendHabit,setCreateHabit } = props
+    const { setMyHabit, sendHabit, setCreateHabit } = props
     const { buttonStatus, myHabit } = props
     const { status, isDisabled} = buttonStatus;
     const daysOfWeek = ['D','S','T','Q','Q','S','S'];
