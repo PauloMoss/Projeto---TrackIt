@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
 import UserContext from '../contexts/UserContext';
 
-import {GlobalStyle} from './Generic/Styles';
-import Login from './Login/Login';
-import SignUp from './SingIn/SignUp';
+import GlobalStyle from '../styles/GlobalStyles';
+import Login from './Login_SignUp/Login';
+import SignUp from './Login_SignUp/SignUp';
 import Habtis from "./Habits/Habits";
 import Today from "./Today/Today";
 import History from "./History/History";

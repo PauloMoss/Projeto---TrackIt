@@ -1,12 +1,5 @@
 import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${props => props.color};
-        font-family: 'Lexend Deca', sans-serif;
-    }
-`;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -50,4 +43,4 @@ const UserAlert = styled.div`
     color: #ff0000;
 `;
 
-export {Container, Input, Button, UserAlert, GlobalStyle};
+export {Container, Input, Button, UserAlert};

@@ -1,21 +1,4 @@
-import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 import styled from 'styled-components';
-
-export default function Header() {
-
-    const { userProfile } = useContext(UserContext);
-    if(userProfile){
-        return(
-            <TopBar>
-                <span>TrackIt</span>
-                <img src={userProfile.image} alt={userProfile.name} />
-            </TopBar>
-        );
-    } else{
-        return "Carregando..";
-    }
-}
 
 const TopBar = styled.div`
 position: fixed;
@@ -40,3 +23,27 @@ color: #FFFFFF;
         background-color: #fff;
     }
 `
+const BottomBar = styled.div`
+position: fixed;
+bottom: 0;
+right:0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+height: 70px;
+padding: 0 20px;
+background: #fff;
+
+    span {
+        color: #52B6FF;
+        font-size: 18px;
+    }
+    div {
+        position: absolute;
+        bottom: 10px;
+        left: calc(50% - 45px);
+    }
+`
+
+export { BottomBar, TopBar };

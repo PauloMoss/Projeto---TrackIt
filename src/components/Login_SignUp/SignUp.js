@@ -4,12 +4,15 @@ import axios from 'axios';
 import Loader from "react-loader-spinner";
 
 import trackit from "../../assets/Trackit.png";
-import {Container, Input, Button, UserAlert, GlobalStyle} from '../Generic/Styles';
+import { Container, Input, Button, UserAlert } from './Styles';
+import GlobalStyle from '../../styles/GlobalStyles';
 
 export default function SignUp() {
+
     const history = useHistory();
     const [userData, setUserData] = useState({ email: "", name: "", image: "", password: "" });
     const [buttonStatus, setButtonStatus] = useState({ status:"Cadastrar", userAlert: "", isDisabled: false});
+    
     const { email, name, image, password } = userData
     const { status, userAlert, isDisabled } = buttonStatus;
 

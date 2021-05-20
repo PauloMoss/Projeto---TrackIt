@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import styled from 'styled-components';
-
+import {BottomBar} from './Styles';
 
 export default function NavBar() {
     return(
@@ -28,25 +27,3 @@ export default function NavBar() {
     );
 }
 
-const BottomBar = styled.div`
-position: fixed;
-bottom: 0;
-right:0;
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-height: 70px;
-padding: 0 20px;
-background: #fff;
-
-    span {
-        color: #52B6FF;
-        font-size: 18px;
-    }
-    div {
-        position: absolute;
-        bottom: 10px;
-        left: calc(50% - 45px);
-    }
-`

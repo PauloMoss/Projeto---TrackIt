@@ -1,12 +1,12 @@
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 import Loader from "react-loader-spinner";
 import axios from 'axios';
 
+import UserContext from '../../contexts/UserContext';
 import trackit from "../../assets/Trackit.png";
-import {Container, Input, Button, UserAlert, GlobalStyle} from '../Generic/Styles';
-
+import { Container, Input, Button, UserAlert } from './Styles';
+import GlobalStyle from '../../styles/GlobalStyles';
 
 export default function Login() {
 
@@ -14,6 +14,7 @@ export default function Login() {
     const { setUserProfile } = useContext(UserContext);
     const [user, setUser] = useState({ email: "", password: "" });
     const [buttonStatus, setButtonStatus] = useState({ status:"Entrar", userAlert: "", isDisabled: false});
+
     const { email, password } = user
     const { status, userAlert, isDisabled } = buttonStatus;
 
@@ -50,7 +51,5 @@ export default function Login() {
                 {userAlert}
             </Container>
         </>
-        
-        
     );
 }

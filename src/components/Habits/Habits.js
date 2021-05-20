@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import HabitContext from '../../contexts/HabitContext';
 import axios from 'axios';
 
-import styled from 'styled-components';
-import Header from '../Header_NavBar/Header';
-import NavBar from '../Header_NavBar/NavBar';
+import UserContext from '../../contexts/UserContext';
+import HabitContext from '../../contexts/HabitContext';
+import Header from '../Header_Menu/Header';
+import NavBar from '../Header_Menu/Menu';
 import Habit from './Habit';
 import AddHabit from './AddHabit';
+import { NoHabitsYet } from './Styles'
 
 export default function Habtis() {
     
     const { userProfile } = useContext(UserContext);
-    const [habitsList, setHabitsList] = useState([]);
+    const [habitsList, setHabitsList] = useState(null);
     const [createHabit, setCreateHabit] = useState(false);
 
     useEffect(() => {
@@ -34,15 +34,9 @@ export default function Habtis() {
             <Header />
             <AddHabit createHabit={createHabit} setCreateHabit={setCreateHabit}/>
             
-            {habitsList.length !== 0 ? habitsList.map((h) => <Habit key={h.id} habit={h} />) : noHabitsYet}
+            {habitsList !== null ? ((habitsList.length !== 0) ? habitsList.map((h) => <Habit key={h.id} habit={h} />) : noHabitsYet) : "carregando"}
 
             <NavBar />
         </HabitContext.Provider>
     );
 }
-
-const NoHabitsYet = styled.div`
-
-`;
-
-//

@@ -1,10 +1,9 @@
 import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import HabitContext from '../../contexts/HabitContext';
 import axios from 'axios';
 
-import styled from 'styled-components';
-
+import UserContext from '../../contexts/UserContext';
+import HabitContext from '../../contexts/HabitContext';
+import { Container, Weekdays, Days, MyHabitsTitle } from './Styles'
 
 export default function Habit({habit}) {
 
@@ -24,8 +23,9 @@ export default function Habit({habit}) {
         deleteHabit.then(r => {
             const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
             request.then(r => setHabitsList(r.data));
-            request.catch(()=> alert("Ocorreu um erro."))
+            request.catch(()=> alert("Ocorreu um erro ao carregar a lista de habitos."))
         })
+        deleteHabit.catch(() => alert("Ocorreu um erro ao deletar o habito."))
     }
 
     return(
@@ -38,44 +38,3 @@ export default function Habit({habit}) {
         </Container>
     );
 }
-
-const Container = styled.div`
-position: relative;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-width: 90%;
-background: #FFF;
-border-radius: 5px;
-margin: 10px auto;
-color: #666666;
-    ion-icon {
-        color: #666;
-        font-size: 18px;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-    }
-`;
-const MyHabitsTitle = styled.span`
-width: 75%;
-margin: 15px;
-`;
-const Weekdays = styled.div`
-display: flex;
-justify-content: flex-start;
-width: 75%;
-margin: 0 0 15px 15px;
-`;
-const Days = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
-    background-color: ${props => props.color};
-    border: 1px solid #D5D5D5;
-    box-sizing: border-box;
-    border-radius: 5px;
-`;

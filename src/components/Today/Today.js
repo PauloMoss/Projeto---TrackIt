@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Header from '../Header_NavBar/Header';
-import NavBar from '../Header_NavBar/NavBar';
+import Header from '../Header_Menu/Header';
+import NavBar from '../Header_Menu/Menu';
 
 
 export default function Today() {
