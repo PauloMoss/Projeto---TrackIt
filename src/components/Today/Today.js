@@ -13,7 +13,7 @@ export default function Today() {
     
     const { userProfile } = useContext(UserContext);
     const { todayPercentage, setTodayPercentage } = useContext(PercentageContext);
-    const [habitsToday, setHabitsToday] = useState([null]);
+    const [habitsToday, setHabitsToday] = useState(null);
     
     useEffect(() => {
         const config = {

@@ -57,6 +57,7 @@ const DaysChecked = styled.div`
 `;
 
 const HabitDayStatus = styled.span`
-color: ${props => props.color}
+color: ${props => props.color};
 `;
+
 export { DateToday, Container, MyHabitsTitle, Weekdays, FinishedHabits, HabitDayStatus, DaysChecked };
