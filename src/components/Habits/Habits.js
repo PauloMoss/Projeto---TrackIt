@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import Loader from "react-loader-spinner";
 
 import UserContext from '../../contexts/UserContext';
 import HabitContext from '../../contexts/HabitContext';
@@ -14,6 +15,7 @@ export default function Habtis() {
     const { userProfile } = useContext(UserContext);
     const [habitsList, setHabitsList] = useState(null);
     const [createHabit, setCreateHabit] = useState(false);
+    const loading = <Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>
 
     useEffect(() => {
         const config = {
@@ -23,7 +25,7 @@ export default function Habtis() {
         }
         const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         request.then(r => setHabitsList(r.data));
-        request.catch(()=> alert("Ocorreu um erro."))
+        request.catch(()=> alert("Ocorreu um erro ao carregar seus habitos."))
     },[userProfile.token]
     );
 
@@ -32,9 +34,9 @@ export default function Habtis() {
     return(
         <HabitContext.Provider value={{habitsList, setHabitsList}}>
             <Header />
-            <AddHabit createHabit={createHabit} setCreateHabit={setCreateHabit}/>
+            <AddHabit createHabit={createHabit} setCreateHabit={setCreateHabit} loading={loading}/>
             
-            {habitsList !== null ? ((habitsList.length !== 0) ? habitsList.map((h) => <Habit key={h.id} habit={h} />) : noHabitsYet) : "carregando"}
+            {habitsList !== null ? ((habitsList.length !== 0) ? habitsList.map( h => <Habit key={h.id} habit={h} />) : noHabitsYet) : loading}
 
             <Menu />
         </HabitContext.Provider>

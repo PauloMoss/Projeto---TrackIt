@@ -9,6 +9,7 @@ justify-content: space-between;
 align-items: center;
 width: 100%;
 height: 70px;
+padding: 0 20px;
 background: #126BA5;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 font-family: 'Playball', cursive;

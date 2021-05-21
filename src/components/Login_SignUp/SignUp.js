@@ -22,7 +22,7 @@ export default function SignUp() {
 
     function userSignUp(event) {
         event.preventDefault();
-        setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={22} width={80}/>, userAlert: "", isDisabled: true});
+        setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", userData);
         request.then(() => history.push("/"));

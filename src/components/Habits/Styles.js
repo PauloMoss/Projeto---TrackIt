@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 const NoHabitsYet = styled.div`
-
+width: 90%;
+margin: 10px auto;
+color: #666666;
+font-size: 18px;
 `;
 
 const Container = styled.div`
@@ -30,8 +33,8 @@ margin: 10px auto;
 const Weekdays = styled.div`
 display: flex;
 justify-content: flex-start;
-width: 75%;
-margin: 0 0 15px 15px;
+width: 90%;
+margin: 0 auto 15px auto;
 `;
 const Days = styled.div`
     display: flex;
@@ -40,10 +43,11 @@ const Days = styled.div`
     width: 30px;
     height: 30px;
     margin-right: 8px;
-    background-color: ${props => props.color};
+    background-color: ${props => props.background};
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
+    color: ${props => props.color};
 `;
 
 const Settings = styled.div`
@@ -71,8 +75,10 @@ const MyHabits = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-top: 100px;
-margin-bottom: 30px;
+margin: 100px auto 30px auto;
+width: 90%;
+font-size: 23px;
+color: #126BA5;
 `;
 
 const Button = styled.button`
@@ -87,8 +93,8 @@ ion-icon {
     margin: 0;
 }`
 const MyHabitsTitle = styled.span`
-width: 75%;
-margin: 15px;
+width: 90%;
+margin: 15px auto;
 color: #666666;
 `;
 

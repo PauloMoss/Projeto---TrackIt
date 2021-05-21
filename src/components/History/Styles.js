@@ -6,4 +6,8 @@ const MyHabitsCalendar = styled.div`
     justify-content:center;
 `;
 
-export { MyHabitsCalendar };
+const TileContent =styled.div`
+color:red;
+`;
+
+export { MyHabitsCalendar, TileContent };

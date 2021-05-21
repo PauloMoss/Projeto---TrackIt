@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Loader from "react-loader-spinner";
 import axios from 'axios';
 
@@ -16,12 +16,14 @@ export default function Login() {
     const [buttonStatus, setButtonStatus] = useState({ status:"Entrar", userAlert: "", isDisabled: false});
     const lastUser = localStorage.getItem("lastLogin");
     
-    if(lastUser) {
-        const currentUser = JSON.parse(lastUser);
-        setUserProfile(currentUser);
-        history.push("/hoje");
-        return <> carregando </>;
-    }
+    useEffect(() => {
+        if(lastUser) {
+            const currentUser = JSON.parse(lastUser);
+            setUserProfile(currentUser);
+            history.push("/hoje");
+            return <> carregando </>;
+        }
+    }, []);
 
     const { email, password } = user
     const { status, userAlert, isDisabled } = buttonStatus;
@@ -34,7 +36,7 @@ export default function Login() {
     function userLogIn(event) {
 
         event.preventDefault();
-        setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={22} width={80}/>, userAlert: "", isDisabled: true});
+        setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`, user);
         request.then((r) => {
@@ -59,7 +61,7 @@ export default function Login() {
                 <form onSubmit={userLogIn}>
                     <Input type="email" placeholder="Email" value={email} required disabled={isDisabled} color={isDisabled ? '#F2F2F2' : '#FFFFFF'} onChange={e => handleOnChange(e, "email")}/>
                     <Input type="password" placeholder="Password" value={password} required disabled={isDisabled} color={isDisabled ? '#F2F2F2' : '#FFFFFF'} onChange={e => handleOnChange(e, "password")} />
-                    <div><input type="checkbox" onChange={(e) => {checkBox = e.target.checked}}/> manhenha-se conectado</div>
+                    <div style={{color: '#666666'}}><input type="checkbox" onChange={(e) => {checkBox = e.target.checked}}/> manhenha-se conectado</div>
                     <Button type="submit">{status}</Button>
                 </form>
                 <Link to= "/cadastro" ><span>Não tem uma conta? Cadastre-se!</span></Link>

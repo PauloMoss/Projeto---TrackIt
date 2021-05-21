@@ -22,7 +22,7 @@ export default function HabitToday({habitToday, setHabitsToday, habitsToday, ind
             const check = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, habitToday, config);
             check.then(r => {
                 newHabitsToday[index] = {...newHabitsToday[index], done: true, currentSequence: currentSequence + 1};
-                if(highestSequence === 0) {newHabitsToday[index] = {...newHabitsToday[index], highestSequence: highestSequence + 1};}
+                if(highestSequence === 0 || currentSequence === highestSequence) {newHabitsToday[index] = {...newHabitsToday[index], highestSequence: highestSequence + 1};}
                 setHabitsToday(newHabitsToday);
                 setTodayPercentage( (newHabitsToday.length > 0) ? newHabitsToday.filter(h => h && h.done).length/newHabitsToday.length : 0  );
             })
@@ -31,12 +31,12 @@ export default function HabitToday({habitToday, setHabitsToday, habitsToday, ind
             const check = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, habitToday, config);
             check.then(r => {
                 newHabitsToday[index] = {...newHabitsToday[index], done: false, currentSequence: currentSequence - 1}
+                if(highestSequence === 1) {newHabitsToday[index] = {...newHabitsToday[index], highestSequence: highestSequence - 1};}
                 setHabitsToday(newHabitsToday);
                 setTodayPercentage( (newHabitsToday.length > 0) ? newHabitsToday.filter(h => h && h.done).length/newHabitsToday.length : 0  );
             })
-            check.catch(() => alert("Ocorreu um erro ao dar check."))
+            check.catch(() => alert("Ocorreu um erro ao dar uncheck."))
         }
-        
     }
 
     return(
@@ -44,7 +44,7 @@ export default function HabitToday({habitToday, setHabitsToday, habitsToday, ind
             <MyHabitsTitle>{name}</MyHabitsTitle>
             <Weekdays>
                 <DaysChecked color = {done ? "#8FC549" : '#E5E5E5'}>Sequência atual: <span>{currentSequence} dias</span></DaysChecked>
-                <DaysChecked color = {(currentSequence + 1 === highestSequence && highestSequence > 0) ? "#8FC549" : '#E5E5E5'} >Seu recorde: <span>{highestSequence} dias</span></DaysChecked>
+                <DaysChecked color = {(currentSequence === highestSequence && highestSequence > 0) ? "#8FC549" : '#E5E5E5'} >Seu recorde: <span>{highestSequence} dias</span></DaysChecked>
             </Weekdays>
             <FinishedHabits color={done ? "#8FC549" : '#E5E5E5'} onClick={checkHabit}>
                 <ion-icon name="checkmark-sharp"></ion-icon>

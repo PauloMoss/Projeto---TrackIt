@@ -25,7 +25,7 @@ export default function NewHabitConfig(props) {
         <Container>
             <Input type="text" placeholder="nome do hábito" value={name} disabled={isDisabled} color={isDisabled ? '#F2F2F2' : '#FFFFFF'} onChange={e => setMyHabit({...myHabit, name: e.target.value})}/>
             <Weekdays>
-                {daysOfWeek.map((d,i) => <Days key={i} color={days.includes(i) ? '#CFCFCF' : '#fff'} onClick={() => updateHabit(i)} > {d} </Days>)}
+                {daysOfWeek.map((d,i) => <Days key={i} background={days.includes(i) ? '#CFCFCF' : '#fff'} color={days.includes(i) ? '#fff' : '#DBDBDB'}onClick={() => updateHabit(i)} > {d} </Days>)}
             </Weekdays>
             <Settings>
                 <span onClick={() => setCreateHabit(false)}>Cancelar</span>

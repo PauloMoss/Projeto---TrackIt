@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const DateToday = styled.div`
 display: flex;
 flex-direction: column;
-margin-top: 100px;
-margin-bottom: 10px;
+margin: 100px auto 10px auto;
+width: 90%;
 font-size: 23px;
 color: #126BA5;
 `;
@@ -39,7 +39,6 @@ right: 8px;
 display: flex;
 justify-content: center;
 align-items: center;
-
 width: 69px;
 height: 69px;
 background: ${props => props.color};
@@ -56,7 +55,9 @@ const DaysChecked = styled.div`
     }
 `;
 
-const HabitDayStatus = styled.span`
+const HabitDayStatus = styled.div`
+width:90%;
+margin: 0 auto 30px auto;
 color: ${props => props.color};
 `;
 

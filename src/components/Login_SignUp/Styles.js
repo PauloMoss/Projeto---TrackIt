@@ -8,17 +8,20 @@ width: 80%;
 background: #FFF;
 margin: 0 auto;
 
-img {
-    margin-top: 70px;
-    margin-bottom: 40px;
-}
-
-button {
-    margin-bottom: 25px;
-}
-span {
-    color:#52B6FF;
-}
+        img {
+            margin-top: 70px;
+            margin-bottom: 40px;
+        }
+        button {
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+        span {
+            color:#52B6FF;
+        }
+        div {
+            font-size: 14px;
+        }
 `;
 
 const Input = styled.input`
@@ -29,6 +32,7 @@ const Input = styled.input`
     border-radius: 5px;
     margin: 6px 0;
     background-color: ${props => props.color};
+    font-family: Lexend Deca;
 `;
 
 const Button = styled.button`
@@ -37,6 +41,7 @@ const Button = styled.button`
     background: #52B6FF;
     border-radius: 5px;
     color: #FFFFFF;
+    font-size: 20px;
 `;
 const UserAlert = styled.div`
     margin-top: 10px;

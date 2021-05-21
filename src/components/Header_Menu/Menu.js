@@ -12,7 +12,7 @@ export default function Menu() {
 
     return(
         <BottomBar>
-            <Link to= "/habitos"><span>Habitos</span></Link>
+            <Link to= "/habitos"><span>Hábitos</span></Link>
             <Link to= "/hoje"><div style={{ width: 91, height: 91 }}>
                 <CircularProgressbar
                     value={todayPercentage * 100}
@@ -27,7 +27,7 @@ export default function Menu() {
                     })}
                 />
             </div></Link>
-            <Link to= "/historico"><span>Historico</span></Link>
+            <Link to= "/historico"><span>Histórico</span></Link>
         </BottomBar>
     );
 }

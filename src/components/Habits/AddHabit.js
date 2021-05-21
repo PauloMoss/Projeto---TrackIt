@@ -1,21 +1,20 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import Loader from "react-loader-spinner";
 
 import UserContext from '../../contexts/UserContext';
 import HabitContext from '../../contexts/HabitContext';
 import NewHabitConfig from './NewHabitConfig';
 import { MyHabits, Button } from './Styles';
 
-export default function AddHabit({createHabit, setCreateHabit}) {
+export default function AddHabit({createHabit, setCreateHabit, loading}) {
 
     const { userProfile } = useContext(UserContext);
     const { setHabitsList } = useContext(HabitContext);
     const [myHabit, setMyHabit] = useState({name: "", days: []})
     const [buttonStatus, setButtonStatus] = useState({ status:"Salvar", isDisabled: false});
-    
+
     function sendHabit() {
-        setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={22} width={80}/>, isDisabled: true});
+        setButtonStatus({status:loading, isDisabled: true});
         const config = {
             headers: {
                 Authorization: `Bearer ${userProfile.token}`

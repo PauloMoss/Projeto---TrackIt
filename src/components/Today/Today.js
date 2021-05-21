@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import Loader from "react-loader-spinner";
 
 import UserContext from '../../contexts/UserContext';
 import PercentageContext from '../../contexts/PercentageContext';
@@ -14,6 +15,7 @@ export default function Today() {
     const { userProfile } = useContext(UserContext);
     const { todayPercentage, setTodayPercentage } = useContext(PercentageContext);
     const [habitsToday, setHabitsToday] = useState(null);
+    const loading = <Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>
     
     useEffect(() => {
         const config = {
@@ -30,12 +32,16 @@ export default function Today() {
     },[userProfile.token]
     );
 
+    const noHabitsFinishedYet = <HabitDayStatus color={"#BABABA"}>Nenhum hábito concluído ainda</HabitDayStatus>
+    const todayFinishedHabits = <HabitDayStatus color={"#8FC549"}>{(todayPercentage * 100).toFixed(0)} % dos habitos concluidos</HabitDayStatus>
+    const todayHabitsList = habitsToday && (habitsToday.length > 0) ? habitsToday.map((h, i) => <HabitToday key={h.id} index={i} habitToday={h} setHabitsToday={setHabitsToday} habitsToday={habitsToday}/>) : "Nenhum Habito Hoje";
+    
     return(
         <>
             <Header />
             <Date />
-            {(todayPercentage === 0) ? <HabitDayStatus color={"#BABABA"}>Nenhum hábito concluído ainda</HabitDayStatus> : <HabitDayStatus color={"#8FC549"}>{(todayPercentage * 100).toFixed(0)} % dos habitos concluidos</HabitDayStatus>}
-            {habitsToday !== null ? ((habitsToday.length > 0) ? habitsToday.map((h, i) => h && <HabitToday key={h.id} index={i} habitToday={h} setHabitsToday={setHabitsToday} habitsToday={habitsToday}/>) : "Nenhum Habito Hoje") : "carregando"}
+            {(todayPercentage === 0) ? noHabitsFinishedYet : todayFinishedHabits}
+            {habitsToday !== null ? todayHabitsList : loading}
 
             <Menu />
         </>
